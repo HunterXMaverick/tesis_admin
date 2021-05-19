@@ -25,7 +25,6 @@ export class SidebarComponent implements OnInit {
     return this.personService.getUserByEmail(this.email).subscribe(
       res => {
         this.dataUser = res
-        console.log(this.dataUser)
       },
       err => console.error(err)
     )

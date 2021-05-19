@@ -11,7 +11,6 @@ import {HeaderComponent} from './home/header/header.component';
 import {FooterComponent} from './home/footer/footer.component';
 import {PageNotFoundComponent} from './home/page-not-found/page-not-found.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +25,7 @@ import {PageNotFoundComponent} from './home/page-not-found/page-not-found.compon
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
