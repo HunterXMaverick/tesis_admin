@@ -87,7 +87,7 @@
           <tbody>
             <tr
               *ngFor="
-                let user of users.persons
+                let user of users.data
                   | paginate: { itemsPerPage: 5, currentPage: page }
               "
               class="hover:bg-gray-100"

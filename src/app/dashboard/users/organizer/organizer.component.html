@@ -44,7 +44,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let user of users.persons  | paginate: { itemsPerPage: 5, currentPage: page }" class="hover:bg-gray-100">
+          <tr *ngFor="let user of users.data  | paginate: { itemsPerPage: 5, currentPage: page }" class="hover:bg-gray-100">
             <td *ngIf="user.rol !== 'Administrador' && user.rol !== 'Asistente' && user.rol !== 'Ponente' && user.rol !== 'Revisor'"
                 class="px-5 py-5 border-b border-gray-200 text-sm">
               <div class="flex items-center">

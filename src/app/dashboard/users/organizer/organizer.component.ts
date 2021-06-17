@@ -26,6 +26,7 @@ export class OrganizerComponent implements OnInit {
     return this.personService.getUsers().subscribe(
       res => {
         this.users = res;
+        console.log(this.users)
       },
       err => console.error(err)
     );
