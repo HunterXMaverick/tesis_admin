@@ -3,6 +3,7 @@ import { PersonService } from "../../services/person.service";
 import { Person } from "../../models/person";
 import { Router } from "@angular/router";
 import Swal from "sweetalert2";
+//import emailjs ,{EmailJSResponseStatus }  from "emailjs-com";
 
 @Component({
   selector: "app-register-organizer",
@@ -26,7 +27,15 @@ export class RegisterOrganizerComponent implements OnInit {
   constructor(private personService: PersonService, private router: Router) {}
 
   ngOnInit() {}
-
+  // public sendEmail(e: Event) {
+  //   e.preventDefault();
+  //   emailjs.sendForm('service_l01zz0t', 'template_zphpnmj', e.target as HTMLFormElement, 'user_5FycVlS2WARPO4X40Sguw')
+  //     .then((result: EmailJSResponseStatus) => {
+  //       console.log(result.text);
+  //     }, (error) => {
+  //       console.log(error.text);
+  //     });
+  // }
   postPerson(ci) {
     if (
       this.person.type_dni &&
