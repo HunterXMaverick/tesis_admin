@@ -21,7 +21,7 @@
               [(ngModel)]="person.rol"
               class="focus:border-blue-500 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
               type="text"
-              [readonly]="!editable"
+              [readonly]="false"
             />
           </div>
 
@@ -46,7 +46,7 @@
               name="specialty"
               [(ngModel)]="person.specialty"
               class="focus:border-blue-500 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-              [readonly]="!editable"
+              [readonly]="false"
               type="text"
             />
           </div>

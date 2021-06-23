@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-
+  page: number = 1;
   photo: any = '';
   users: any = [];
   status: boolean;

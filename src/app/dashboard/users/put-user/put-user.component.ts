@@ -11,6 +11,7 @@ import Swal from "sweetalert2";
 })
 export class PutUserComponent implements OnInit {
   idUser: string;
+  page: number = 1;
   dataUser: any = [];
   person: Person = {
     names: "",
