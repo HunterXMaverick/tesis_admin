@@ -15,10 +15,10 @@
         Bienvenido/a
       </span>
       <h2 class="my-2 text-lg text-gray-700 font-extrabold">
-        {{ dataUser.data.last_names }} {{ dataUser.data.names }}
+        {{ dataUser.last_names }} {{ dataUser.names }}
       </h2>
       <span class="text-sm font-semibold text-green-600">
-        {{ dataUser.data.rol }}
+        {{ dataUser.rol }}
       </span>
     </div>
 
@@ -121,7 +121,7 @@
 
     <div class="mt-auto flex items-center text-blue-800 text-center">
       <a
-        routerLink="/dashboard/put-user/{{ dataUser.data._id }}"
+        routerLink="/dashboard/put-user/{{ dataUser._id }}"
         class="flex items-center"
         ><i class="fa fa-user-edit"></i>
         <span class="ml-2 font-medium">Editar perfil</span></a

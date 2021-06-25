@@ -23,10 +23,10 @@ export class SidebarComponent implements OnInit {
 
   getPersonByEmail() {
     return this.personService.getUserByEmail(this.email).subscribe(
-      res => {
-        this.dataUser = res
+      (res: any) => {
+        this.dataUser = res.data;
       },
-      err => console.error(err)
-    )
+      (err) => console.error(err)
+    );
   }
 }

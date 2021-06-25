@@ -46,16 +46,15 @@ export class CongressesComponent implements OnInit {
 
   getOrganizer() {
     return this.personService.getUsers().subscribe(
-      res => {
-        this.persons = res
-        this.persons.persons.forEach(element => {
-            if (element.rol == 'Organizador') {
-              this.dataOrganizer = element
-            }
+      (res: any) => {
+        this.persons = res.data;
+        this.persons.forEach((element) => {
+          if (element.rol == "Organizador") {
+            this.dataOrganizer = element;
           }
-        )
+        });
       },
-      err => console.error(err)
-    )
+      (err) => console.error(err)
+    );
   }
 }

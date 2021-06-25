@@ -3,7 +3,7 @@ import { PersonService } from "../../services/person.service";
 import { Person } from "../../models/person";
 import { Router } from "@angular/router";
 import Swal from "sweetalert2";
-//import emailjs ,{EmailJSResponseStatus }  from "emailjs-com";
+import emailjs ,{EmailJSResponseStatus }  from "emailjs-com";
 
 @Component({
   selector: "app-register-organizer",
@@ -66,6 +66,8 @@ export class RegisterOrganizerComponent implements OnInit {
           if (validateEmail) {
             if (this.person.type_dni == "Cédula") {
               if (validateCI) {
+                emailjs.send('service_l01zz0t', 'template_zphpnmj',dataPerson, 
+                'user_5FycVlS2WARPO4X40Sguw').then
                 this.personService.postPerson(dataPerson).subscribe(
                   (res) => {
                     Swal.fire({
@@ -95,6 +97,8 @@ export class RegisterOrganizerComponent implements OnInit {
                 dataPerson.person.dni
               );
               if (validatePassport) {
+                emailjs.send('service_l01zz0t', 'template_zphpnmj',dataPerson, 
+                'user_5FycVlS2WARPO4X40Sguw').then
                 this.personService.postPerson(dataPerson).subscribe(
                   (res) => {
                     Swal.fire({
