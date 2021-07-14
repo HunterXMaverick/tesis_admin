@@ -16,6 +16,7 @@ import { NewReviewerComponent } from "./new-reviewer/new-reviewer.component";
 import { ReviewerComponent } from "./users/reviewer/reviewer.component";
 import { RegisterAdminComponent } from "./register-admin/register-admin.component";
 import { RegisterOrganizerComponent } from "./register-organizer/register-organizer.component";
+import { HistoryComponent } from "./history/history.component";
 
 const routes: Routes = [
   { path: "users", component: UsersComponent },
@@ -35,6 +36,7 @@ const routes: Routes = [
   { path: "reviewer", component: ReviewerComponent },
   { path: "register-admin", component: RegisterAdminComponent },
   { path: "register-organizer", component: RegisterOrganizerComponent },
+  { path: "history", component: HistoryComponent },
 ];
 
 @NgModule({

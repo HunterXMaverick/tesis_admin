@@ -20,7 +20,8 @@ import { NewReviewerComponent } from './new-reviewer/new-reviewer.component';
 import { ReviewerComponent } from './users/reviewer/reviewer.component';
 import { RegisterAdminComponent } from './register-admin/register-admin.component'
 import { RegisterOrganizerComponent } from './register-organizer/register-organizer.component'
-import { NgxPaginationModule } from 'ngx-pagination'; 
+import { NgxPaginationModule } from 'ngx-pagination';
+import { HistoryComponent } from './history/history.component'; 
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     RegisterAdminComponent,
     RegisterOrganizerComponent,
     OrganizerComponent,
+    HistoryComponent,
   ],
   exports: [
     SidebarComponent
