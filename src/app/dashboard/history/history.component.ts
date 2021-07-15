@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CongressService }  from '../../services/congress.service';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-history',
@@ -11,7 +13,8 @@ export class HistoryComponent implements OnInit {
   congress: any = [];
 
   constructor(
-    private congressService: CongressService
+    private congressService: CongressService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -27,4 +30,28 @@ export class HistoryComponent implements OnInit {
     );
   }
 
+  disableCongress(id: string, status_congress: boolean) {
+    let dataCongress = {
+      status_congress: status_congress
+    }
+    this.congressService.disableEnableCongress(id, dataCongress).subscribe(
+      res => {
+        if (status_congress == true) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Congreso habilitado',
+            showConfirmButton: false,
+            timer: 1500
+          });
+        } else {
+          Swal.fire({
+            icon: 'success',
+            title: 'Congreso inhabilitado',
+            showConfirmButton: false,
+            timer: 1500
+          });
+        }
+      }
+    );
+  }
 }

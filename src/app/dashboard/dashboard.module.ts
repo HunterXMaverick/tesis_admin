@@ -51,7 +51,7 @@ import { HistoryComponent } from './history/history.component';
     CommonModule,
     DashboardRoutingModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ]
 })
 export class DashboardModule {

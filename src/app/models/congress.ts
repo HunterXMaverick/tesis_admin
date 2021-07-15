@@ -11,5 +11,6 @@ export interface Congress {
   politics?: string,
   capacity_speakers: number,
   capacity_participants: number,
-  status_congress: boolean
+  status_congress: boolean,
+  knowledge_area:string
 }

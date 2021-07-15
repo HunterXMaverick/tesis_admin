@@ -22,4 +22,8 @@ export class CongressService {
   putCongress(id: string, congress: object) {
     return this.http.put(`${this.url}/putCongress/${id}`, congress, this.server.obtainHeaders())
   }
+
+  disableEnableCongress(id: string, person: object) {
+    return this.http.put(`${this.url}/disableCongress/${id}`, person, this.server.obtainHeaders());
+  }
 }
