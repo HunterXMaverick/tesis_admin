@@ -30,13 +30,14 @@ export class HistoryComponent implements OnInit {
     );
   }
 
-  disableCongress(id: string, status_congress: boolean) {
+
+  disableCongress(id: string, status_congress: string) {
     let dataCongress = {
       status_congress: status_congress
     }
     this.congressService.disableEnableCongress(id, dataCongress).subscribe(
       res => {
-        if (status_congress == true) {
+        if (status_congress === 'Habilitado') {
           Swal.fire({
             icon: 'success',
             title: 'Congreso habilitado',

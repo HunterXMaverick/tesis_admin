@@ -20,12 +20,12 @@ export class LoginComponent implements OnInit {
     private permissions: PermissionsService,
     private formBuilder: FormBuilder,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.loginData = this.formBuilder.group({
-      email: ["", Validators.required],
-      password: ["", Validators.required],
+      email: ["administrador@gmail.com", Validators.required],
+      password: ["1234", Validators.required],
     });
   }
 
@@ -43,45 +43,67 @@ export class LoginComponent implements OnInit {
     let validate = path.test(dataLogin.person.email);
     if (dataLogin.person.email != "" && dataLogin.person.password != "") {
       if (validate) {
-        this.personServices.login(dataLogin).subscribe((data: Data) => {
-          if (data.ok == true) {
-            if (this.permissions.decodeToken(data.token)) {
+        this.personServices.login(dataLogin).subscribe(
+          (data: any) => {
+            if (data.ok == true) {
+              if (this.permissions.decodeToken(data.token)) {
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Inicio de Sesión Exitosa',
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                this.router.navigate(['dashboard/congresses']);
+              } else {
+                email = '';
+                password = '';
+                console.log('Login error');
+              }
+            } else {
               Swal.fire({
-                icon: "success",
-                title: "Inicio de Sesión Exitosa",
+                icon: 'warning',
+                title: 'Correo y/o contraseña incorrectos',
                 showConfirmButton: false,
                 timer: 1500,
               });
-              this.router.navigate(["dashboard/congresses"]);
-            } else {
-              email = "";
-              password = "";
-              console.log("Error");
             }
-          } else if (data.ok == false) {
-            Swal.fire({
-              icon: "warning",
-              title: "Correo y/o contraseña incorrectos",
-              showConfirmButton: false,
-              timer: 1500,
-            });
+          },
+          (error) => {
+            if (!error.error.ok) {
+              Swal.fire({
+                icon: 'warning',
+                title: 'Correo y/o contraseña incorrectos',
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            }
           }
-        });
+        );
       } else {
         Swal.fire({
-          icon: "warning",
-          title: "Por favor, ingrese un correo válido",
+          icon: 'warning',
+          title: 'Por favor, ingrese un correo válido',
           showConfirmButton: false,
           timer: 1500,
         });
       }
     } else {
       Swal.fire({
-        icon: "warning",
-        title: "Por favor, completar todos los datos",
+        icon: 'warning',
+        title: 'Por favor, completar todos los datos',
         showConfirmButton: false,
         timer: 1500,
       });
+    }
+  }
+
+  handleModal(showModal: boolean) {
+    let modal: any = document.getElementById('modal');
+
+    if (showModal) {
+      modal.classList.remove('hidden');
+    } else {
+      modal.classList.add('hidden');
     }
   }
 }

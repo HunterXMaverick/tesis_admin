@@ -1,10 +1,7 @@
 <div id="menu" class="h-screen w-full flex overflow-hidden">
   <nav class="flex flex-col bg-gray-200 dark:bg-gray-900 w-64 px-12 pt-4 pb-6">
     <div class="flex flex-row border-b items-center pb-2">
-      <img
-        class="h-12 w-12 rounded-full object-cover mr-3"
-        src="/assets/img/dot-logo.png"
-      />
+      <img class="h-12 w-12 rounded-full object-cover mr-3" src="/assets/img/dot-logo.png" />
       <span class="text-lg font-semibold capitalize text-gray-800">
         SCOV
       </span>
@@ -17,6 +14,9 @@
       <h2 class="my-2 text-lg text-gray-700 font-extrabold">
         {{ dataUser.last_names }} {{ dataUser.names }}
       </h2>
+      <div *ngIf="dataUser.profile_picture_url !== ''" class="flex mt-4 w-full justify-center">
+        <img [src]="profile_picture_url" class="w-32" alt="Foto de Perfil" />
+      </div>
       <span class="text-sm font-semibold text-green-600">
         {{ dataUser.rol }}
       </span>
@@ -44,10 +44,7 @@
         </a>
       </li>
 
-      <li
-        id="item"
-       class="mt-8"
-      >
+      <li id="item" class="mt-8">
         <a class="flex hover:text-green-700">
           <i class="fas fa-users-cog"></i>
           <span class="ml-2 capitalize font-medium"> Sistema </span>
@@ -56,113 +53,75 @@
         <ul id="desple">
 
           <li class="mt-4 ml-6">
-            <a
-              routerLink="../organizer"
-              class="flex hover:text-green-700"
-              href="#"
-            >
+            <a routerLink="../organizer" class="flex hover:text-green-700" href="#">
               <svg class="fill-current h-5 w-5" viewBox="0 0 24 24">
-                <path
-                  d="M12 4a4 4 0 014 4 4 4 0 01-4 4 4 4 0 01-4-4 4 4 0
+                <path d="M12 4a4 4 0 014 4 4 4 0 01-4 4 4 4 0 01-4-4 4 4 0
                     014-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4
-                    8-4z"
-                ></path>
+                    8-4z"></path>
               </svg>
               <span class="ml-2 capitalize font-medium"> Organizadores </span>
             </a>
           </li>
 
           <li class="mt-4 ml-6">
-            <a
-              routerLink="../participants"
-              class="flex hover:text-green-700"
-              href="#"
-            >
+            <a routerLink="../participants" class="flex hover:text-green-700" href="#">
               <svg class="fill-current h-5 w-5" viewBox="0 0 24 24">
-                <path
-                  d="M12 4a4 4 0 014 4 4 4 0 01-4 4 4 4 0 01-4-4 4 4 0
+                <path d="M12 4a4 4 0 014 4 4 4 0 01-4 4 4 4 0 01-4-4 4 4 0
                     014-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4
-                    8-4z"
-                ></path>
+                    8-4z"></path>
               </svg>
               <span class="ml-2 capitalize font-medium"> Asistentes </span>
             </a>
           </li>
 
           <li class="mt-4 ml-6">
-            <a
-              routerLink="../speakers"
-              class="flex hover:text-green-700"
-              href="#"
-            >
+            <a routerLink="../speakers" class="flex hover:text-green-700" href="#">
               <svg class="fill-current h-5 w-5" viewBox="0 0 24 24">
-                <path
-                  d="M12 4a4 4 0 014 4 4 4 0 01-4 4 4 4 0 01-4-4 4 4 0
+                <path d="M12 4a4 4 0 014 4 4 4 0 01-4 4 4 4 0 01-4-4 4 4 0
                   014-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4
-                  8-4z"
-                ></path>
+                  8-4z"></path>
               </svg>
               <span class="ml-2 capitalize font-medium"> Ponente </span>
             </a>
           </li>
 
           <li class="mt-4 ml-6">
-            <a
-              routerLink="../reviewer"
-              class="flex hover:text-green-700"
-              href="#"
-            >
+            <a routerLink="../reviewer" class="flex hover:text-green-700" href="#">
               <svg class="fill-current h-5 w-5" viewBox="0 0 24 24">
-                <path
-                  d="M12 4a4 4 0 014 4 4 4 0 01-4 4 4 4 0 01-4-4 4 4 0
+                <path d="M12 4a4 4 0 014 4 4 4 0 01-4 4 4 4 0 01-4-4 4 4 0
                   014-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4
-                  8-4z"
-                ></path>
+                  8-4z"></path>
               </svg>
               <span class="ml-2 capitalize font-medium"> Revisores </span>
             </a>
           </li>
-        
+
         </ul>
       </li>
     </ul>
 
     <div class="mt-auto flex items-center text-blue-800 text-center">
-      <a
-        routerLink="/dashboard/put-user/{{ dataUser._id }}"
-        class="flex items-center"
-        ><i class="fa fa-user-edit"></i>
-        <span class="ml-2 font-medium">Editar perfil</span></a
-      >
+      <a routerLink="/dashboard/put-user/{{ dataUser._id }}" class="flex items-center"><i class="fa fa-user-edit"></i>
+        <span class="ml-2 font-medium">Editar perfil</span></a>
     </div>
 
-    <div
-      *ngIf="dataUser.rol !== 'Administrador'"
-      class="mt-4 flex items-center text-red-700 text-center"
-    >
+    <div *ngIf="dataUser.rol !== 'Administrador'" class="mt-4 flex items-center text-red-700 text-center">
       <a href="http://localhost:4200/home" class="flex items-center">
         <svg class="fill-current h-5 w-5" viewBox="0 0 24 24">
-          <path
-            d="M16 17v-3H9v-4h7V7l5 5-5 5M14 2a2 2 0 012
+          <path d="M16 17v-3H9v-4h7V7l5 5-5 5M14 2a2 2 0 012
 						2v2h-2V4H5v16h9v-2h2v2a2 2 0 01-2 2H5a2 2 0 01-2-2V4a2 2
-						0 012-2h9z"
-          ></path>
+						0 012-2h9z"></path>
         </svg>
         <span class="ml-2 font-medium">Cerrar sesión</span>
       </a>
     </div>
 
-    <div
-      *ngIf="dataUser.rol == 'Administrador'"
-      class="mt-auto flex items-center text-red-700 text-center"
-    >
+    <div *ngIf="dataUser.rol == 'Administrador'" class="mt-auto flex items-center text-red-700 text-center">
       <a href="http://localhost:4200/home" class="flex items-center">
         <svg class="fill-current h-5 w-5" viewBox="0 0 24 24">
-          <path
-            d="M16 17v-3H9v-4h7V7l5 5-5 5M14 2a2 2 0 012
+          <path d="M16 17v-3H9v-4h7V7l5 5-5 5M14 2a2 2 0 012
 						2v2h-2V4H5v16h9v-2h2v2a2 2 0 01-2 2H5a2 2 0 01-2-2V4a2 2
-						0 012-2h9z"
-          ></path>
+						0 012-2h9z"></path>
         </svg>
         <span class="ml-2 font-medium">Cerrar sesión</span>
       </a>

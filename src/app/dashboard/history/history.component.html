@@ -67,16 +67,40 @@
                             </td>
 
                             <td class="px-5 py-5 border-b border-gray-200 text-sm text-center">
-                          <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
-                            <input (click)="disableCongress(congres._id, congres.status_congress = false)" type="checkbox"
-                                   *ngIf="congres.status_congress == true" checked
-                                   class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none focus:outline-none cursor-pointer"/>
-                            <input (click)="disableCongress(congres._id, congres.status_congress = true)" type="checkbox"
-                                   *ngIf="congres.status_congress == false"
-                                   class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none focus:outline-none cursor-pointer"/>
-                            <label class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300"></label>
-                          </div>
-                        </td>
+                                <div
+                                    class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                                    <input
+                                        (click)="disableCongress(congres._id, congres.status_congress = 'Inhabilitado')"
+                                        type="checkbox" *ngIf="congres.status_congress == 'Habilitado'" checked
+                                        class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none focus:outline-none cursor-pointer" />
+                                    <input (click)="disableCongress(congres._id, congres.status_congress = 'Habilitado')"
+                                        type="checkbox" *ngIf="congres.status_congress == 'Inhabilitado'"
+                                        class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none focus:outline-none cursor-pointer" />
+                                    <label
+                                        class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300"></label>
+                                </div>
+                            </td>
+                            <!-- MODAL -->
+                            <dialog id="myModal" class="lex flex-col w-flex h-flex">
+                                <div class="flex flex-col">
+                                    <div class="flex w-full h-auto justify-between">
+                                        <div class="h-auto pb-5 pl-2 text-2xl">
+                                            <i class="fas fa-book-open text-blue-800 text-2xl mr-2"></i>
+                                            Reglamentos del Congreso
+                                            <div class="h-auto pb-5 pr-2 text-2xl">
+                                                <i onclick="document.getElementById('myModal').close();"
+                                                    class="fas fa-window-close text-red-700 text-2xl cursor-pointer"></i>
+                                            </div>
+                                            <div class="w-full h-auto items-center bg-gray-200 rounded text-gray-800">
+                                                <div class="flex">
+                                                    <iframe class="text-xl text-justify w-full"
+                                                        srcdoc="{{ congres.regulations }}"></iframe>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </dialog>
                         </tr>
                     </tbody>
                 </table>
@@ -85,27 +109,3 @@
 
     </div>
 </div>
-
-
-
-<!-- MODAL -->
-<dialog id="myModal" class="lex flex-col w-flex h-flex">
-    <div class="flex flex-col">
-        <div class="flex w-full h-auto justify-between">
-            <div class="h-auto pb-5 pl-2 text-2xl">
-                <i class="fas fa-book-open text-blue-800 text-2xl mr-2"></i>
-                Reglamentos del Congreso
-            <div class="h-auto pb-5 pr-2 text-2xl">
-                <i onclick="document.getElementById('myModal').close();"
-                    class="fas fa-window-close text-red-700 text-2xl cursor-pointer"></i>
-            </div>
-            <div *ngFor="let congres of congress.data"
-                class="w-full h-auto items-center bg-gray-200 rounded text-gray-800">
-                <div class="flex">
-                    <iframe class="text-xl text-justify w-full" srcdoc="{{ congres.regulations }}"></iframe>
-                  </div>
-            </div>
-        </div>
-        </div>
-    </div>
-</dialog>

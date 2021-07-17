@@ -5,7 +5,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { PostulationsComponent } from './postulations/postulations.component';
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CongressesComponent } from './congresses/congresses.component';
 import { LinksComponent } from './links/links.component';
 import { PutCongressComponent } from './congresses/put-congress/put-congress.component';
@@ -43,6 +43,7 @@ import { HistoryComponent } from './history/history.component';
     RegisterOrganizerComponent,
     OrganizerComponent,
     HistoryComponent,
+    ReactiveFormsModule,
   ],
   exports: [
     SidebarComponent

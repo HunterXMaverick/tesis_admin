@@ -24,4 +24,14 @@ export class WebService {
       })
     };
   }
+
+
+  obtainFileHeaders(): object {
+    return {
+      headers: new HttpHeaders({
+        // "Content-Type": "multipart/form-data",
+        Authorization: this.permissions.obtainToken(),
+      }),
+    };
+  }
 }
