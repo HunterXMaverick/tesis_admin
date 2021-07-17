@@ -20,7 +20,7 @@ import { NewReviewerComponent } from './new-reviewer/new-reviewer.component';
 import { ReviewerComponent } from './users/reviewer/reviewer.component';
 import { RegisterAdminComponent } from './register-admin/register-admin.component'
 import { RegisterOrganizerComponent } from './register-organizer/register-organizer.component'
-import { NgxPaginationModule } from 'ngx-pagination';
+import {NgxPaginationModule} from 'ngx-pagination';
 import { HistoryComponent } from './history/history.component'; 
 
 @NgModule({
@@ -43,7 +43,6 @@ import { HistoryComponent } from './history/history.component';
     RegisterOrganizerComponent,
     OrganizerComponent,
     HistoryComponent,
-    ReactiveFormsModule,
   ],
   exports: [
     SidebarComponent
@@ -53,6 +52,7 @@ import { HistoryComponent } from './history/history.component';
     DashboardRoutingModule,
     FormsModule,
     NgxPaginationModule,
+    ReactiveFormsModule,
   ]
 })
 export class DashboardModule {

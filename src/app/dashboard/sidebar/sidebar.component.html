@@ -14,7 +14,8 @@
       <h2 class="my-2 text-lg text-gray-700 font-extrabold">
         {{ dataUser.last_names }} {{ dataUser.names }}
       </h2>
-      <div *ngIf="dataUser.profile_picture_url !== ''" class="flex mt-4 w-full justify-center">
+      <div *ngIf="profile_picture_url !== ''
+      " class="flex mt-4 w-full justify-center">
         <img [src]="profile_picture_url" class="w-32" alt="Foto de Perfil" />
       </div>
       <span class="text-sm font-semibold text-green-600">
