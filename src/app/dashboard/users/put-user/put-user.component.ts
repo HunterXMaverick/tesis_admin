@@ -16,7 +16,7 @@ export class PutUserComponent {
   dataUser: any = [];
   logUser: any = [];
   profile_picture_url: string = '';
-  rolUser='';
+  rolUser = '';
 
   constructor(
     private router: ActivatedRoute,
@@ -38,7 +38,7 @@ export class PutUserComponent {
   getUserById() {
     return this.personService.getUserById(this.idUser).subscribe((res: any) => {
       this.dataUser = res.data;
-      this.rolUser= this.dataUser.rol
+      this.rolUser = this.dataUser.rol
       console.log(this.dataUser.rol)
       this.logUser = res.data;
 
@@ -54,25 +54,20 @@ export class PutUserComponent {
           names: this.dataUser.names,
           last_names: this.dataUser.last_names,
           phone: this.dataUser.phone,
-          profile_picture: this.dataUser.profile_picture,
+          profile_picture: '',
         });
       } else {
         this.user.setValue({
           names: this.dataUser.names,
           last_names: this.dataUser.last_names,
           phone: this.dataUser.phone,
-          profile_picture: null,
+          profile_picture: '',
         });
       }
     });
   }
 
   putUser() {
-    // if (this.logUser.rol == 'Administrador') {
-    //   this.user.setValue({
-    //     phone: '0999999999',
-    //   });
-    // }
     if (this.user.valid) {
       let pathOnlyLetters = /^[ñA-ZñÑáéíóúÁÉÍÓÚa-z _]*$/;
       let pathPhone = /^0[0-9]{1}[0-9]{8}$/;
@@ -93,58 +88,88 @@ export class PutUserComponent {
             confirmButtonText: 'Confirmar',
           }).then((result) => {
             if (result.isConfirmed) {
-              const formData: any = new FormData();
-              formData.append('file', this.user.get('profile_picture')!.value);
+              let newPic = this.user.get('profile_picture')?.value;
+              console.log(newPic);
 
-              this.filesService
-                .uploadFile('images', formData)
-                .then((response) => {
-                  if (response.ok) {
-                    this.user.patchValue({
-                      profile_picture: `${response.data.directory}/${response.data.name}`,
-                    });
-                  } else {
-                    this.filesService
-                      .deleteFile(
-                        `${response.data.directory}`,
-                        `${response.data.name}`
-                      )
-                      .then((response: any) => {
-                        console.log(response.info);
-                      })
-                      .catch((error) => {
-                        console.error(error);
+              if (newPic != '') {
+                const formData: any = new FormData();
+                formData.append(
+                  'file',
+                  this.user.get('profile_picture')!.value
+                );
+
+                this.filesService
+                  .uploadFile('images', formData)
+                  .then((response) => {
+                    if (response.ok) {
+                      this.user.patchValue({
+                        profile_picture: `${response.data.directory}/${response.data.name}`,
                       });
-                  }
-                })
-                .then(() => {
-                  let dataPerson = {
-                    person: this.user.value,
-                  };
+                    } else {
+                      this.filesService
+                        .deleteFile(
+                          `${response.data.directory}`,
+                          `${response.data.name}`
+                        )
+                        .then((response: any) => {
+                          console.log(response.info);
+                        })
+                        .catch((error) => {
+                          console.error(error);
+                        });
+                    }
+                  })
+                  .then(() => {
+                    let dataPerson = {
+                      person: this.user.value,
+                    };
 
-                  this.personService
-                    .putPerson(this.idUser, dataPerson)
-                    .subscribe(
-                      (res) => {
-                        this.routerLink.navigate(['/dashboard/history']);
-                      },
-                      (err) => {
-                        console.error(err);
-                      }
-                    );
-                  Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Actualización exitosa',
-                    showConfirmButton: false,
-                    timer: 1500,
+                    this.personService
+                      .putPerson(this.idUser, dataPerson)
+                      .subscribe(
+                        () => {
+                          Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Actualización exitosa',
+                            showConfirmButton: false,
+                            timer: 1500,
+                          }).then(() =>
+                            this.routerLink.navigate(['/dashboard/history'])
+                          );
+                        },
+                        (err) => {
+                          console.error(err);
+                        }
+                      );
                   });
-                });
+              } else {
+                let dataPerson = {
+                  person: this.user.value,
+                };
+
+                this.personService.putPerson(this.idUser, dataPerson).subscribe(
+                  () => {
+                    Swal.fire({
+                      position: 'center',
+                      icon: 'success',
+                      title: 'Actualización exitosa',
+                      showConfirmButton: false,
+                      timer: 1500,
+                    }).then(() =>
+                      this.routerLink.navigate(['/dashboard/history'])
+                    );
+                  },
+                  (err) => {
+                    console.error(err);
+                  }
+                );
+              }
             }
           });
         } else {
           Swal.fire({
-            position: 'top-end',
+            position: 'center',
             icon: 'warning',
             title: 'Por favor, ingrese un teléfono válido',
             showConfirmButton: false,
@@ -153,7 +178,7 @@ export class PutUserComponent {
         }
       } else {
         Swal.fire({
-          position: 'top-end',
+          position: 'center',
           icon: 'warning',
           title: 'Por favor, ingresar solo letras en nombres y apellidos',
           showConfirmButton: false,
@@ -162,7 +187,7 @@ export class PutUserComponent {
       }
     } else {
       Swal.fire({
-        position: 'top-end',
+        position: 'center',
         icon: 'warning',
         title: 'Debes completar todos los datos',
         showConfirmButton: false,
