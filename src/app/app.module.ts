@@ -2,6 +2,8 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http'
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { CKEditorModule } from "@ckeditor/ckeditor5-angular";
+
 import {NgxPaginationModule} from 'ngx-pagination';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -27,6 +29,7 @@ import {PageNotFoundComponent} from './home/page-not-found/page-not-found.compon
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
+    CKEditorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

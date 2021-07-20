@@ -16,6 +16,7 @@ export class PutUserComponent {
   dataUser: any = [];
   logUser: any = [];
   profile_picture_url: string = '';
+  rolUser='';
 
   constructor(
     private router: ActivatedRoute,
@@ -37,6 +38,8 @@ export class PutUserComponent {
   getUserById() {
     return this.personService.getUserById(this.idUser).subscribe((res: any) => {
       this.dataUser = res.data;
+      this.rolUser= this.dataUser.rol
+      console.log(this.dataUser.rol)
       this.logUser = res.data;
 
       if (this.dataUser.profile_picture) {
@@ -64,20 +67,12 @@ export class PutUserComponent {
     });
   }
 
-  // getUserByEmail() {
-  //   return this.personService
-  //     .getUserByEmail(this.personService.email)
-  //     .subscribe((res: any) => {
-  //       this.logUser = res.data;
-  //     });
-  // }
-
   putUser() {
-    if (this.logUser.rol == 'Participante') {
-      this.user.setValue({
-        phone: '0999999999',
-      });
-    }
+    // if (this.logUser.rol == 'Administrador') {
+    //   this.user.setValue({
+    //     phone: '0999999999',
+    //   });
+    // }
     if (this.user.valid) {
       let pathOnlyLetters = /^[ñA-ZñÑáéíóúÁÉÍÓÚa-z _]*$/;
       let pathPhone = /^0[0-9]{1}[0-9]{8}$/;
@@ -98,7 +93,6 @@ export class PutUserComponent {
             confirmButtonText: 'Confirmar',
           }).then((result) => {
             if (result.isConfirmed) {
-              // if (this.profile_picture_url == '') {
               const formData: any = new FormData();
               formData.append('file', this.user.get('profile_picture')!.value);
 
@@ -132,7 +126,7 @@ export class PutUserComponent {
                     .putPerson(this.idUser, dataPerson)
                     .subscribe(
                       (res) => {
-                        this.routerLink.navigate(['/dashboard/congresses']);
+                        this.routerLink.navigate(['/dashboard/history']);
                       },
                       (err) => {
                         console.error(err);
@@ -146,28 +140,6 @@ export class PutUserComponent {
                     timer: 1500,
                   });
                 });
-              // }
-              //  else {
-              //   let dataPerson = {
-              //     person: this.user.value,
-              //   };
-
-              //   this.personService.putPerson(this.idUser, dataPerson).subscribe(
-              //     (res) => {
-              //       this.routerLink.navigate(['/dashboard/congresses']);
-              //     },
-              //     (err) => {
-              //       console.error(err);
-              //     }
-              //   );
-              //   Swal.fire({
-              //     position: 'top-end',
-              //     icon: 'success',
-              //     title: 'Actualización exitosa',
-              //     showConfirmButton: false,
-              //     timer: 1500,
-              //   });
-              // }
             }
           });
         } else {

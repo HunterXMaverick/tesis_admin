@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
                   showConfirmButton: false,
                   timer: 1500,
                 });
-                this.router.navigate(['dashboard/congresses']);
+                this.router.navigate(['dashboard/history']);
               } else {
                 email = '';
                 password = '';

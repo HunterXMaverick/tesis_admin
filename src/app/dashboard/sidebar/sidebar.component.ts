@@ -16,8 +16,6 @@ export class SidebarComponent implements OnInit {
     private personService: PersonService
   ) {
     this.email = personService.email;
-    // this.dataUser = JSON.parse(sessionStorage.getItem('_user-data')!);
-    // this.getUserProfilePic(); 
   }
 
   ngOnInit() {

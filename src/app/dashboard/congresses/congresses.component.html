@@ -1,10 +1,10 @@
-<div class="h-screen w-full flex overlay">
+<div class="h-screen w-full flex">
 
   <app-sidebar></app-sidebar>
 
-  <div *ngFor="let congres of congress.data" class="w-full h-full overlay">
-    <div *ngIf="congres.status_congress == 'Habilitado'">
-
+  <div *ngFor="let congres of congress.data" class="w-full h-full">
+    
+    <div *ngIf="congres.status_congress == 'Habilitado'" class="w-full">
       <h2 class="py-4 text-2xl font-semibold text-gray-800 border-b">
         Congreso ~ {{congres.name}}
       </h2>
