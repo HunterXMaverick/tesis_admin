@@ -26,16 +26,18 @@ export class RegisterOrganizerComponent implements OnInit {
 
   constructor(private personService: PersonService, private router: Router) { }
 
+  public sendEmail(e: Event) {
+    e.preventDefault();
+    emailjs.sendForm('service_l01zz0t', 'template_zphpnmj', e.target as HTMLFormElement, 'user_5FycVlS2WARPO4X40Sguw')
+      .then((result: EmailJSResponseStatus) => {
+        console.log(result.text);
+        console.log(e.target as HTMLFormElement);
+      }, (error) => {
+        console.log(error.text);
+      });
+  }
   ngOnInit() { }
-  // public sendEmail(e: Event) {
-  //   e.preventDefault();
-  //   emailjs.sendForm('service_l01zz0t', 'template_zphpnmj', e.target as HTMLFormElement, 'user_5FycVlS2WARPO4X40Sguw')
-  //     .then((result: EmailJSResponseStatus) => {
-  //       console.log(result.text);
-  //     }, (error) => {
-  //       console.log(error.text);
-  //     });
-  // }
+  
   postPerson(ci) {
     this.password=this.person.dni;
     this.person.password=this.password;
@@ -68,8 +70,6 @@ export class RegisterOrganizerComponent implements OnInit {
           if (validateEmail) {
             if (this.person.type_dni == "Cédula") {
               if (validateCI) {
-                emailjs.send('service_l01zz0t', 'template_zphpnmj', dataPerson,
-                  'user_5FycVlS2WARPO4X40Sguw').then
                 this.personService.postPerson(dataPerson).subscribe(
                   (res) => {
                     Swal.fire({
@@ -99,8 +99,6 @@ export class RegisterOrganizerComponent implements OnInit {
                 dataPerson.person.dni
               );
               if (validatePassport) {
-                emailjs.send('service_l01zz0t', 'template_zphpnmj', dataPerson,
-                  'user_5FycVlS2WARPO4X40Sguw').then
                 this.personService.postPerson(dataPerson).subscribe(
                   (res) => {
                     Swal.fire({

@@ -1,111 +1,63 @@
 <!-- <app-header></app-header> -->
 <div class="h-screen">
   <div>
-    <form>
+    <form (submit)="sendEmail($event)">
       <div class="max-w-3xl mx-auto px-4 pt-10 pb-5">
         <div>
           <div class="py-10">
             <div>
-              <div
-                class="mb-5 text-left text-gray-600 font-bold text-4xl mb-10 flex"
-              >
+              <div class="mb-5 text-left text-gray-600 font-bold text-4xl mb-10 flex">
                 <i class="fas fa-user py-2 mr-5"></i>
                 <h1 class="">Registro del Organizador</h1>
               </div>
               <div class="mb-5 text-gray-700">
-                <label class="font-bold mb-1 block"
-                  >Tipo de identificación:</label
-                >
+                <label class="font-bold mb-1 block">Tipo de identificación:</label>
                 <div class="relative">
-                  <select
-                    name="type_dni"
-                    [(ngModel)]="person.type_dni"
-                    class="focus:border-blue-500 appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none"
-                  >
+                  <select name="type_dni" [(ngModel)]="person.type_dni"
+                    class="focus:border-blue-500 appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none">
                     <option value="">Seleccione..</option>
                     <option>Cédula</option>
                     <option>Pasaporte</option>
                   </select>
-                  <div
-                    class="absolute right-0 bottom-0 top-0 px-3 py-2 text-gray-600"
-                  >
+                  <div class="absolute right-0 bottom-0 top-0 px-3 py-2 text-gray-600">
                     <i class="fas fa-angle-down"></i>
                   </div>
                 </div>
               </div>
               <div *ngIf="person.type_dni == 'Cédula'" class="mb-5">
-                <label class="font-bold mb-1 text-gray-700 block"
-                  >Número de identificación:</label
-                >
-                <input
-                  name="dni"
-                  [(ngModel)]="person.dni"
-                  type="text"
+                <label class="font-bold mb-1 text-gray-700 block">Número de identificación:</label>
+                <input name="dni" [(ngModel)]="person.dni" type="text"
                   class="focus:border-blue-500 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-                  placeholder="Ej: 1722334455"
-                  maxlength="10"
-                />
+                  placeholder="Ej: 1722334455" maxlength="10" />
               </div>
               <div *ngIf="person.type_dni == 'Pasaporte'" class="mb-5">
-                <label class="font-bold mb-1 text-gray-700 block"
-                  >Número de identificación:</label
-                >
-                <input
-                  name="dni"
-                  [(ngModel)]="person.dni"
-                  type="text"
+                <label class="font-bold mb-1 text-gray-700 block">Número de identificación:</label>
+                <input name="dni" [(ngModel)]="person.dni" type="text"
                   class="focus:border-blue-500 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-                  placeholder="Ej: 2222222222"
-                  maxlength="10"
-                />
+                  placeholder="Ej: 2222222222" maxlength="10" />
               </div>
               <div class="mb-5">
-                <label class="font-bold mb-1 text-gray-700 block"
-                  >Nombres:</label
-                >
-                <input
-                  name="names"
-                  [(ngModel)]="person.names"
-                  type="text"
+                <label class="font-bold mb-1 text-gray-700 block">Nombres:</label>
+                <input name="names" [(ngModel)]="person.names" type="text"
                   class="focus:border-blue-500 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-                  placeholder="Ej: Marco Antonio"
-                />
+                  placeholder="Ej: Marco Antonio" />
               </div>
               <div class="mb-5">
-                <label class="font-bold mb-1 text-gray-700 block"
-                  >Apellidos:</label
-                >
-                <input
-                  name="last_names"
-                  [(ngModel)]="person.last_names"
-                  type="text"
+                <label class="font-bold mb-1 text-gray-700 block">Apellidos:</label>
+                <input name="last_names" [(ngModel)]="person.last_names" type="text"
                   class="focus:border-blue-500 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-                  placeholder="Ej: Jumbo Estrada"
-                />
+                  placeholder="Ej: Jumbo Estrada" />
               </div>
               <div class="mb-5">
-                <label class="font-bold mb-1 text-gray-700 block"
-                  >Correo electrónico:</label
-                >
-                <input
-                name="user_email"
-                  [(ngModel)]="person.email"
-                  type="email"
+                <label class="font-bold mb-1 text-gray-700 block">Correo electrónico:</label>
+                <input name="email" [(ngModel)]="person.email" type="email"
                   class="focus:border-blue-500 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-                  placeholder="Ej: marco@example.com"
-                />
+                  placeholder="Ej: marco@example.com" />
               </div>
               <div class="mb-5">
-                <label class="font-bold mb-1 text-gray-700 block"
-                  >Telefono:</label
-                >
-                <input
-                  name="phone"
-                  [(ngModel)]="person.phone"
-                  type="text"
-                  placeholder="Ej: 0999999999"
-                  class="focus:border-blue-500 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-                />
+                <label class="font-bold mb-1 text-gray-700 block">Telefono:</label>
+                <input name="phone" [(ngModel)]="person.phone" type="text" placeholder="Ej: 0999999999"
+                  class="focus:border-blue-500 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none" />
               </div>
             </div>
           </div>
@@ -115,19 +67,15 @@
         <div class="max-w-3xl mx-auto px-4">
           <div class="flex justify-between">
             <div class="w-1/2">
-              <button
-                routerLink="../history"
-                class="w-32 focus:outline-none py-2 px-5 rounded-lg shadow-sm text-center text-gray-600 bg-white hover:bg-gray-100 font-medium border"
-              >
+              <button routerLink="../history"
+                class="w-32 focus:outline-none py-2 px-5 rounded-lg shadow-sm text-center text-gray-600 bg-white hover:bg-gray-100 font-medium border">
                 Cancelar
               </button>
             </div>
 
             <div class="w-1/2 text-right">
-              <button type="submit" value="Send"
-                (click)="postPerson(person.dni)"
-                class="w-32 focus:outline-none border border-transparent py-2 px-5 rounded-lg shadow-sm text-center text-white bg-blue-500 hover:bg-blue-600 font-medium"
-              >
+              <button type="submit" value="Send" (click)="postPerson(person.dni)"
+                class="w-32 focus:outline-none border border-transparent py-2 px-5 rounded-lg shadow-sm text-center text-white bg-blue-500 hover:bg-blue-600 font-medium">
                 Enviar
               </button>
             </div>
