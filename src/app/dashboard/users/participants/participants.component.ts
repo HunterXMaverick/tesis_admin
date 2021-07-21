@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {PersonService} from '../../../services/person.service';
+import { Component, OnInit } from '@angular/core';
+import { PersonService } from '../../../services/person.service';
+import { CongressService } from '../../../services/congress.service';
 import Swal from "sweetalert2";
 
 @Component({
@@ -11,11 +12,13 @@ export class ParticipantsComponent implements OnInit {
 
   photo: any = '';
   users: any = [];
+  congress:any = [];
   status: boolean;
   page: number = 1;
 
   constructor(
-    private personService: PersonService
+    private personService: PersonService,
+    private congressService: CongressService
   ) {
   }
 
@@ -27,6 +30,16 @@ export class ParticipantsComponent implements OnInit {
     return this.personService.getUsers().subscribe(
       res => {
         this.users = res;
+      },
+      err => console.error(err)
+    );
+  }
+
+  congresById(id: string) {
+    this.congressService.getCongressById(id).subscribe(
+      (result:any) => {
+        this.congress = result.data;
+        console.log(this.congress)
       },
       err => console.error(err)
     );

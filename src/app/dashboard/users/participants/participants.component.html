@@ -6,11 +6,7 @@
       Lista de Asistentes
     </h2>
 
-    <pagination-controls
-      (pageChange)="page = $event"
-      previousLabel="Anterior"
-      nextLabel="Siguiente"
-    >
+    <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente">
     </pagination-controls>
 
     <div class="py-6">
@@ -18,103 +14,86 @@
         <table>
           <thead>
             <tr>
-              <th
-                class="
+              <th class="
                   px-5
                   py-3
                   border-b-2 border-gray-200
                   bg-gray-100
                   text-left text-sm text-gray-600
-                "
-              >
+                ">
                 Usuario
               </th>
-              <th
-                class="
+              <th class="
                   px-5
                   py-3
                   border-b-2 border-gray-200
                   bg-gray-100
                   text-center text-sm text-gray-600
-                "
-              >
+                ">
                 Núm. de Identificación
               </th>
-              <th
-                class="
+              <th class="
                   px-5
                   py-3
                   border-b-2 border-gray-200
                   bg-gray-100
                   text-left text-sm text-gray-600
-                "
-              >
+                ">
                 Correo electrónico
               </th>
-              <th
-                class="
+              <th class="
                   px-5
                   py-3
                   border-b-2 border-gray-200
                   bg-gray-100
                   text-center text-sm text-gray-600
-                "
-              >
+                ">
                 Rol
               </th>
-              <th
-                class="
+              <th class="
+              px-5
+              py-3
+              border-b-2 border-gray-200
+              bg-gray-100
+              text-center text-sm text-gray-600
+            ">
+                Congreso
+              </th>
+              <th class="
                   px-5
                   py-3
                   border-b-2 border-gray-200
                   bg-gray-100
                   text-center text-sm text-gray-600
-                "
-              >
+                ">
                 Habilitado / Inhabilitado
               </th>
-              <th
-                class="
+              <th class="
                   px-5
                   py-3
                   border-b-2 border-gray-200
                   bg-gray-100
                   text-center text-sm text-gray-600
-                "
-              >
+                ">
                 Editar
               </th>
             </tr>
           </thead>
           <tbody>
-            <tr
-              *ngFor="
+            <tr *ngFor="
                 let user of users.data
                   | paginate: { itemsPerPage: 5, currentPage: page }
-              "
-              class="hover:bg-gray-100"
-            >
-              <td
-                *ngIf="
+              " class="hover:bg-gray-100">
+              <td *ngIf="
                   user.rol !== 'Administrador' &&
                   user.rol !== 'Organizador' &&
                   user.rol !== 'Ponente' &&
                   user.rol !== 'Revisor'
-                "
-                class="px-5 py-5 border-b border-gray-200 text-sm"
-              >
+                " class="px-5 py-5 border-b border-gray-200 text-sm">
                 <div class="flex items-center">
                   <div class="flex-shrink-0 w-10 h-10">
-                    <img
-                      *ngIf="photo"
-                      class="w-full h-full rounded-full"
-                      src=""
-                      alt=""
-                    />
-                    <i
-                      *ngIf="!photo"
-                      class="fas fa-user text-gray-600 text-4xl"
-                    ></i>
+                    <img *ngIf="photo" class="w-full h-full rounded-full" src="" alt="" />
+                    <i *ngIf="!photo" class="fas fa-user text-gray-600 text-4xl"></i>
                   </div>
                   <div class="ml-3">
                     <p class="text-gray-900">
@@ -123,52 +102,50 @@
                   </div>
                 </div>
               </td>
-              <td
-                *ngIf="
+              <td *ngIf="
                   user.rol !== 'Administrador' &&
                   user.rol !== 'Organizador' &&
                   user.rol !== 'Ponente' &&
                   user.rol !== 'Revisor'
-                "
-                class="px-5 py-5 border-b border-gray-200 text-sm text-center"
-              >
+                " class="px-5 py-5 border-b border-gray-200 text-sm text-center">
                 <p class="text-gray-900">{{ user.dni }}</p>
               </td>
-              <td
-                *ngIf="
+              <td *ngIf="
                   user.rol !== 'Administrador' &&
                   user.rol !== 'Organizador' &&
                   user.rol !== 'Ponente' &&
                   user.rol !== 'Revisor'
-                "
-                class="px-5 py-5 border-b border-gray-200 text-sm"
-              >
+                " class="px-5 py-5 border-b border-gray-200 text-sm">
                 <p class="text-gray-900">{{ user.email }}</p>
               </td>
-              <td
-                *ngIf="
+              <td *ngIf="
                   user.rol !== 'Administrador' &&
                   user.rol !== 'Organizador' &&
                   user.rol !== 'Ponente' &&
                   user.rol !== 'Revisor'
-                "
-                class="px-5 py-5 border-b border-gray-200 text-sm text-center"
-              >
+                " class="px-5 py-5 border-b border-gray-200 text-sm text-center">
                 <p class="text-gray-900">
                   {{ user.rol }}
                 </p>
               </td>
-              <td
-                *ngIf="
+              <td *ngIf="
+              user.rol !== 'Administrador' &&
+              user.rol !== 'Organizador' &&
+              user.rol !== 'Ponente' &&
+              user.rol !== 'Revisor'
+            " class="px-5 py-5 border-b border-gray-200 text-sm">
+                <button onclick="document.getElementById('myModal').showModal()" (click)="congresById(user.congress_id)"
+                  id="btn" class="tooltip appearance-none focus:outline-none mr-2">
+                  <i class="fas fa-eye text-blue-800 text-xl"></i>
+                </button>
+              </td>
+              <td *ngIf="
                   user.rol !== 'Administrador' &&
                   user.rol !== 'Organizador' &&
                   user.rol !== 'Ponente' &&
                   user.rol !== 'Revisor'
-                "
-                class="px-5 py-5 border-b border-gray-200 text-sm text-center"
-              >
-                <div
-                  class="
+                " class="px-5 py-5 border-b border-gray-200 text-sm text-center">
+                <div class="
                     relative
                     inline-block
                     w-10
@@ -178,14 +155,9 @@
                     transition
                     duration-200
                     ease-in
-                  "
-                >
-                  <input
-                    (click)="disableEnableUser(user._id, (user.status = false))"
-                    type="checkbox"
-                    *ngIf="user.status == true"
-                    checked
-                    class="
+                  ">
+                  <input (click)="disableEnableUser(user._id, (user.status = false))" type="checkbox"
+                    *ngIf="user.status == true" checked class="
                       toggle-checkbox
                       absolute
                       block
@@ -197,13 +169,9 @@
                       appearance-none
                       focus:outline-none
                       cursor-pointer
-                    "
-                  />
-                  <input
-                    (click)="disableEnableUser(user._id, (user.status = true))"
-                    type="checkbox"
-                    *ngIf="user.status == false"
-                    class="
+                    " />
+                  <input (click)="disableEnableUser(user._id, (user.status = true))" type="checkbox"
+                    *ngIf="user.status == false" class="
                       toggle-checkbox
                       absolute
                       block
@@ -215,38 +183,48 @@
                       appearance-none
                       focus:outline-none
                       cursor-pointer
-                    "
-                  />
-                  <label
-                    class="
+                    " />
+                  <label class="
                       toggle-label
                       block
                       overflow-hidden
                       h-6
                       rounded-full
                       bg-gray-300
-                    "
-                  ></label>
+                    "></label>
                 </div>
               </td>
-              <td
-                *ngIf="
+              <td *ngIf="
                   user.rol !== 'Administrador' &&
                   user.rol !== 'Organizador' &&
                   user.rol !== 'Ponente' &&
                   user.rol !== 'Revisor'
-                "
-              >
-                <div
-                  class="mt-auto flex items-center text-blue-800 text-center"
-                >
-                  <a
-                    routerLink="/dashboard/put-user/{{ user._id }}"
-                    class="flex items-center"
-                    ><i class="fa fa-user-edit"></i
-                  ></a>
+                ">
+                <div class="mt-auto flex items-center text-blue-800 text-center">
+                  <a routerLink="/dashboard/put-user/{{ user._id }}" class="flex items-center"><i
+                      class="fa fa-user-edit"></i></a>
                 </div>
               </td>
+              <!-- MODAL -->
+              <dialog id="myModal" class="lex flex-col w-flex h-flex">
+                <div class="flex flex-col">
+                  <div class="flex w-full h-auto justify-between">
+                    <div class="h-auto pb-5 pl-2 text-2xl">
+                      <i class="fas fa-book-open text-blue-800 text-2xl mr-2"></i>
+                      Congreso
+                      <div class="h-auto pb-5 pr-2 text-2xl">
+                        <i onclick="document.getElementById('myModal').close();"
+                          class="fas fa-window-close text-red-700 text-2xl cursor-pointer"></i>
+                      </div>
+                      <div *ngIf="congress" class="w-full h-auto items-center bg-gray-200 rounded text-gray-800">
+                        <div class="flex">
+                          <p>{{ congress.name }}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </dialog>
             </tr>
           </tbody>
         </table>

@@ -60,6 +60,15 @@
               >
                 Rol
               </th>
+              <th class="
+              px-5
+              py-3
+              border-b-2 border-gray-200
+              bg-gray-100
+              text-center text-sm text-gray-600
+            ">
+                Congreso
+              </th>
               <th
                 class="
                   px-5
@@ -156,6 +165,17 @@
                   {{ user.rol }}
                 </p>
               </td>
+              <td *ngIf="
+              user.rol !== 'Administrador' &&
+                  user.rol !== 'Organizador' &&
+                  user.rol !== 'Ponente' &&
+                  user.rol !== 'Asistente'
+            " class="px-5 py-5 border-b border-gray-200 text-sm">
+                <button onclick="document.getElementById('myModal').showModal()" (click)="congresById(user.congress_id)"
+                  id="btn" class="tooltip appearance-none focus:outline-none mr-2">
+                  <i class="fas fa-eye text-blue-800 text-xl"></i>
+                </button>
+              </td>
               <td
                 *ngIf="
                   user.rol !== 'Administrador' &&
@@ -245,6 +265,26 @@
                   ></a>
                 </div>
               </td>
+               <!-- MODAL -->
+               <dialog id="myModal" class="lex flex-col w-flex h-flex">
+                <div class="flex flex-col">
+                  <div class="flex w-full h-auto justify-between">
+                    <div class="h-auto pb-5 pl-2 text-2xl">
+                      <i class="fas fa-book-open text-blue-800 text-2xl mr-2"></i>
+                      Congreso
+                      <div class="h-auto pb-5 pr-2 text-2xl">
+                        <i onclick="document.getElementById('myModal').close();"
+                          class="fas fa-window-close text-red-700 text-2xl cursor-pointer"></i>
+                      </div>
+                      <div *ngIf="congress" class="w-full h-auto items-center bg-gray-200 rounded text-gray-800">
+                        <div class="flex">
+                          <p>{{ congress.name }}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </dialog>
             </tr>
           </tbody>
         </table>

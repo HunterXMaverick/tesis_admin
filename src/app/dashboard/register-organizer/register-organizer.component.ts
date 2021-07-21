@@ -3,7 +3,7 @@ import { PersonService } from "../../services/person.service";
 import { Person } from "../../models/person";
 import { Router } from "@angular/router";
 import Swal from "sweetalert2";
-import emailjs ,{EmailJSResponseStatus }  from "emailjs-com";
+import emailjs, { EmailJSResponseStatus } from "emailjs-com";
 
 @Component({
   selector: "app-register-organizer",
@@ -11,7 +11,7 @@ import emailjs ,{EmailJSResponseStatus }  from "emailjs-com";
   styleUrls: ["./register-organizer.component.scss"],
 })
 export class RegisterOrganizerComponent implements OnInit {
-  viewPassword = true;
+  password='';  
   person: Person = {
     rol: "Organizador",
     type_dni: "",
@@ -24,9 +24,9 @@ export class RegisterOrganizerComponent implements OnInit {
     phone: "",
   };
 
-  constructor(private personService: PersonService, private router: Router) {}
+  constructor(private personService: PersonService, private router: Router) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
   // public sendEmail(e: Event) {
   //   e.preventDefault();
   //   emailjs.sendForm('service_l01zz0t', 'template_zphpnmj', e.target as HTMLFormElement, 'user_5FycVlS2WARPO4X40Sguw')
@@ -37,6 +37,8 @@ export class RegisterOrganizerComponent implements OnInit {
   //     });
   // }
   postPerson(ci) {
+    this.password=this.person.dni;
+    this.person.password=this.password;
     if (
       this.person.type_dni &&
       this.person.dni &&
@@ -66,8 +68,8 @@ export class RegisterOrganizerComponent implements OnInit {
           if (validateEmail) {
             if (this.person.type_dni == "Cédula") {
               if (validateCI) {
-                emailjs.send('service_l01zz0t', 'template_zphpnmj',dataPerson, 
-                'user_5FycVlS2WARPO4X40Sguw').then
+                emailjs.send('service_l01zz0t', 'template_zphpnmj', dataPerson,
+                  'user_5FycVlS2WARPO4X40Sguw').then
                 this.personService.postPerson(dataPerson).subscribe(
                   (res) => {
                     Swal.fire({
@@ -97,8 +99,8 @@ export class RegisterOrganizerComponent implements OnInit {
                 dataPerson.person.dni
               );
               if (validatePassport) {
-                emailjs.send('service_l01zz0t', 'template_zphpnmj',dataPerson, 
-                'user_5FycVlS2WARPO4X40Sguw').then
+                emailjs.send('service_l01zz0t', 'template_zphpnmj', dataPerson,
+                  'user_5FycVlS2WARPO4X40Sguw').then
                 this.personService.postPerson(dataPerson).subscribe(
                   (res) => {
                     Swal.fire({
