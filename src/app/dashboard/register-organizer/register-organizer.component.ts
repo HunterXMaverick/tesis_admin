@@ -11,7 +11,7 @@ import emailjs, { EmailJSResponseStatus } from "emailjs-com";
   styleUrls: ["./register-organizer.component.scss"],
 })
 export class RegisterOrganizerComponent implements OnInit {
-  password='';  
+  password = '';
   person: Person = {
     rol: "Organizador",
     type_dni: "",
@@ -26,21 +26,21 @@ export class RegisterOrganizerComponent implements OnInit {
 
   constructor(private personService: PersonService, private router: Router) { }
 
-  public sendEmail(e: Event) {
+  sendEmail=(e: Event)=>{
     e.preventDefault();
     emailjs.sendForm('service_l01zz0t', 'template_zphpnmj', e.target as HTMLFormElement, 'user_5FycVlS2WARPO4X40Sguw')
-      .then((result: EmailJSResponseStatus) => {
+    .then((result: EmailJSResponseStatus) => {
         console.log(result.text);
         console.log(e.target as HTMLFormElement);
       }, (error) => {
         console.log(error.text);
-      });
+    });
   }
   ngOnInit() { }
-  
+
   postPerson(ci) {
-    this.password=this.person.dni;
-    this.person.password=this.password;
+    this.password = this.person.dni;
+    this.person.password = this.password;
     if (
       this.person.type_dni &&
       this.person.dni &&
