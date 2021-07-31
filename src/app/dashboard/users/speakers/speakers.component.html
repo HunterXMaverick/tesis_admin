@@ -87,6 +87,7 @@
                   user.rol !== 'Organizador' &&
                   user.rol !== 'Asistente' &&
                   user.rol !== 'Revisor'
+                  && user.rol !== 'Participante'
                 " class="px-5 py-5 border-b border-gray-200 text-sm">
                 <div class="flex items-center">
                   <div class="flex-shrink-0 w-10 h-10">
@@ -105,6 +106,7 @@
                   user.rol !== 'Organizador' &&
                   user.rol !== 'Asistente' &&
                   user.rol !== 'Revisor'
+                  && user.rol !== 'Participante'
                 " class="px-5 py-5 border-b border-gray-200 text-sm text-center">
                 <p class="text-gray-900">{{ user.dni }}</p>
               </td>
@@ -113,6 +115,7 @@
                   user.rol !== 'Organizador' &&
                   user.rol !== 'Asistente' &&
                   user.rol !== 'Revisor'
+                  && user.rol !== 'Participante'
                 " class="px-5 py-5 border-b border-gray-200 text-sm">
                 <p class="text-gray-900">{{ user.email }}</p>
               </td>
@@ -121,6 +124,7 @@
                   user.rol !== 'Organizador' &&
                   user.rol !== 'Asistente' &&
                   user.rol !== 'Revisor'
+                  && user.rol !== 'Participante'
                 " class="px-5 py-5 border-b border-gray-200 text-sm text-center">
                 <p class="text-gray-900">
                   {{ user.rol }}
@@ -131,6 +135,7 @@
               user.rol !== 'Organizador' &&
               user.rol !== 'Asistente' &&
               user.rol !== 'Revisor'
+              && user.rol !== 'Participante'
             " class="px-5 py-5 border-b border-gray-200 text-sm">
                 <button onclick="document.getElementById('myModal').showModal()" (click)="congresById(user.congress_id)"
                   id="btn" class="tooltip appearance-none focus:outline-none mr-2">
@@ -142,6 +147,7 @@
                   user.rol !== 'Organizador' &&
                   user.rol !== 'Asistente' &&
                   user.rol !== 'Revisor'
+                  && user.rol !== 'Participante'
                 " class="px-5 py-5 border-b border-gray-200 text-sm text-center">
                 <div class="
                     relative
@@ -197,6 +203,7 @@
                   user.rol !== 'Organizador' &&
                   user.rol !== 'Asistente' &&
                   user.rol !== 'Revisor'
+                  && user.rol !== 'Participante'
                 ">
                 <div class="mt-auto flex items-center text-blue-800 text-center">
                   <a routerLink="/dashboard/put-user/{{ user._id }}" class="flex items-center"><i

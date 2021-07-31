@@ -4,7 +4,7 @@
 
   <div class="w-full mx-12 my-2 overflow-auto">
     <h2 class="py-4 text-2xl font-semibold text-gray-800 border-b">
-      Lista de Asistentes
+      Lista de Organizadores
     </h2>
     <pagination-controls
     (pageChange)="page = $event"
@@ -45,7 +45,7 @@
           </thead>
           <tbody>
           <tr *ngFor="let user of users.data  | paginate: { itemsPerPage: 5, currentPage: page }" class="hover:bg-gray-100">
-            <td *ngIf="user.rol !== 'Administrador' && user.rol !== 'Asistente' && user.rol !== 'Ponente' && user.rol !== 'Revisor'"
+            <td *ngIf="user.rol !== 'Administrador' && user.rol !== 'Asistente' && user.rol !== 'Ponente' && user.rol !== 'Revisor' && user.rol !== 'Participante'"
                 class="px-5 py-5 border-b border-gray-200 text-sm">
               <div class="flex items-center">
                 <div class="flex-shrink-0 w-10 h-10">
@@ -59,21 +59,21 @@
                 </div>
               </div>
             </td>
-            <td *ngIf="user.rol !== 'Administrador' && user.rol !== 'Asistente' && user.rol !== 'Ponente' && user.rol !== 'Revisor'"
+            <td *ngIf="user.rol !== 'Administrador' && user.rol !== 'Asistente' && user.rol !== 'Ponente' && user.rol !== 'Revisor' && user.rol !== 'Participante'"
                 class="px-5 py-5 border-b border-gray-200 text-sm text-center">
               <p class="text-gray-900">{{user.dni}}</p>
             </td>
-            <td *ngIf="user.rol !== 'Administrador' && user.rol !== 'Asistente' && user.rol !== 'Ponente' && user.rol !== 'Revisor'"
+            <td *ngIf="user.rol !== 'Administrador' && user.rol !== 'Asistente' && user.rol !== 'Ponente' && user.rol !== 'Revisor' && user.rol !== 'Participante'"
                 class="px-5 py-5 border-b border-gray-200 text-sm">
               <p class="text-gray-900">{{user.email}}</p>
             </td>
-            <td *ngIf="user.rol !== 'Administrador' && user.rol !== 'Asistente' && user.rol !== 'Ponente' && user.rol !== 'Revisor'"
+            <td *ngIf="user.rol !== 'Administrador' && user.rol !== 'Asistente' && user.rol !== 'Ponente' && user.rol !== 'Revisor' && user.rol !== 'Participante'"
                 class="px-5 py-5 border-b border-gray-200 text-sm text-center">
               <p class="text-gray-900">
                 {{user.rol}}
               </p>
             </td>
-            <td *ngIf="user.rol !== 'Administrador' && user.rol !== 'Asistente' && user.rol !== 'Ponente' && user.rol !== 'Revisor'"
+            <td *ngIf="user.rol !== 'Administrador' && user.rol !== 'Asistente' && user.rol !== 'Ponente' && user.rol !== 'Revisor' && user.rol !== 'Participante'"
                 class="px-5 py-5 border-b border-gray-200 text-sm text-center">
               <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
                 <input (click)="disableEnableUser(user._id, user.status = false)" type="checkbox"
@@ -85,7 +85,7 @@
                 <label class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300"></label>
               </div>
             </td>
-            <td *ngIf="user.rol !== 'Administrador' && user.rol !== 'Asistente' && user.rol !== 'Ponente' && user.rol !== 'Revisor'">
+            <td *ngIf="user.rol !== 'Administrador' && user.rol !== 'Asistente' && user.rol !== 'Ponente' && user.rol !== 'Revisor' && user.rol !== 'Participante'">
               <div
                 class="mt-auto flex items-center text-blue-800 text-center">
                 <a
