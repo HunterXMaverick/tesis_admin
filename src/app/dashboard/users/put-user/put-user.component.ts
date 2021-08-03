@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PersonService } from '../../../services/person.service';
 import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FilesService } from '../../../services/files.service.service';
+import { FilesService } from 'src/app/services/files.service.service';
 
 @Component({
   selector: 'app-put-user',
@@ -12,11 +12,10 @@ import { FilesService } from '../../../services/files.service.service';
 })
 export class PutUserComponent {
   user: FormGroup;
-  idUser: string;
+  idUser: any;
   dataUser: any = [];
   logUser: any = [];
   profile_picture_url: string = '';
-  rolUser = '';
 
   constructor(
     private router: ActivatedRoute,
@@ -30,42 +29,46 @@ export class PutUserComponent {
       last_names: ['', [Validators.required]],
       phone: ['', [Validators.required]],
       profile_picture: [null],
+      password: ['', [Validators.required]],
     });
     this.idUser = this.router.snapshot.params.id;
     this.getUserById();
   }
 
   getUserById() {
-    return this.personService.getUserById(this.idUser).subscribe((res: any) => {
-      this.dataUser = res.data;
-      this.rolUser = this.dataUser.rol
-      console.log(this.dataUser.rol)
-      this.logUser = res.data;
-
-      if (this.dataUser.profile_picture) {
+    return this.personService
+      .getUserById(this.idUser)
+      .subscribe((res: any) => {
+        this.dataUser = res.data;
+        this.logUser = res.data;
+console.log(this.dataUser);
         if (this.dataUser.profile_picture) {
-          this.profile_picture_url = `http://localhost:3500/api/file/${this.dataUser.profile_picture}`;
-        } else {
-          this.profile_picture_url =
-            'https://upload.wikimedia.org/wikipedia/commons/7/72/Default-welcomer.png';
-        }
+          if (this.dataUser.profile_picture) {
+            this.profile_picture_url = `http://localhost:3500/api/file/${this.dataUser.profile_picture}`;
+          } else {
+            this.profile_picture_url =
+              'https://upload.wikimedia.org/wikipedia/commons/7/72/Default-welcomer.png';
+          }
 
-        this.user.setValue({
-          names: this.dataUser.names,
-          last_names: this.dataUser.last_names,
-          phone: this.dataUser.phone,
-          profile_picture: '',
-        });
-      } else {
-        this.user.setValue({
-          names: this.dataUser.names,
-          last_names: this.dataUser.last_names,
-          phone: this.dataUser.phone,
-          profile_picture: '',
-        });
-      }
-    });
+          this.user.setValue({
+            names: this.dataUser.names,
+            last_names: this.dataUser.last_names,
+            phone: this.dataUser.phone,
+            profile_picture: '',
+            password: '',
+          });
+        } else {
+          this.user.setValue({
+            names: this.dataUser.names,
+            last_names: this.dataUser.last_names,
+            phone: this.dataUser.phone,
+            profile_picture: '',
+            password: '',
+          });
+        }
+      });
   }
+
 
   putUser() {
     if (this.user.valid) {
@@ -89,7 +92,6 @@ export class PutUserComponent {
           }).then((result) => {
             if (result.isConfirmed) {
               let newPic = this.user.get('profile_picture')?.value;
-              console.log(newPic);
 
               if (newPic != '') {
                 const formData: any = new FormData();
@@ -135,7 +137,7 @@ export class PutUserComponent {
                             showConfirmButton: false,
                             timer: 1500,
                           }).then(() =>
-                            this.routerLink.navigate(['/dashboard/history'])
+                            this.routerLink.navigate(['/dashboard/congresses'])
                           );
                         },
                         (err) => {
@@ -148,22 +150,24 @@ export class PutUserComponent {
                   person: this.user.value,
                 };
 
-                this.personService.putPerson(this.idUser, dataPerson).subscribe(
-                  () => {
-                    Swal.fire({
-                      position: 'center',
-                      icon: 'success',
-                      title: 'Actualización exitosa',
-                      showConfirmButton: false,
-                      timer: 1500,
-                    }).then(() =>
-                      this.routerLink.navigate(['/dashboard/history'])
-                    );
-                  },
-                  (err) => {
-                    console.error(err);
-                  }
-                );
+                this.personService
+                  .putPerson(this.idUser, dataPerson)
+                  .subscribe(
+                    () => {
+                      Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Actualización exitosa',
+                        showConfirmButton: false,
+                        timer: 1500,
+                      }).then(() =>
+                        this.routerLink.navigate(['/dashboard/congresses'])
+                      );
+                    },
+                    (err) => {
+                      console.error(err);
+                    }
+                  );
               }
             }
           });
