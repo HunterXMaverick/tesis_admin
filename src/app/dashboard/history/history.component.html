@@ -35,7 +35,7 @@
                             </th>
                             <th
                                 class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-sm text-gray-600">
-                                Habilitado / Inhabilitado
+                                Habilitado / Pendiente
                             </th>
                         </tr>
                     </thead>
@@ -70,11 +70,11 @@
                                 <div
                                     class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
                                     <input
-                                        (click)="disableCongress(congres._id, congres.status_congress = 'Inhabilitado')"
+                                        (click)="disableCongress(congres._id, congres.status_congress = 'Pendiente')"
                                         type="checkbox" *ngIf="congres.status_congress == 'Habilitado'" checked
                                         class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none focus:outline-none cursor-pointer" />
                                     <input (click)="disableCongress(congres._id, congres.status_congress = 'Habilitado')"
-                                        type="checkbox" *ngIf="congres.status_congress == 'Inhabilitado'"
+                                        type="checkbox" *ngIf="congres.status_congress == 'Pendiente'"
                                         class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none focus:outline-none cursor-pointer" />
                                     <label
                                         class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300"></label>

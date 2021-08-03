@@ -47,7 +47,7 @@ export class HistoryComponent implements OnInit {
         } else {
           Swal.fire({
             icon: 'success',
-            title: 'Congreso inhabilitado',
+            title: 'Congreso Pendiente',
             showConfirmButton: false,
             timer: 1500
           });
