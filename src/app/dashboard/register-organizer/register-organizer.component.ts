@@ -12,6 +12,7 @@ import emailjs, { EmailJSResponseStatus } from "emailjs-com";
 })
 export class RegisterOrganizerComponent implements OnInit {
   password = '';
+  
   person: Person = {
     rol: "Organizador",
     type_dni: "",
@@ -19,6 +20,7 @@ export class RegisterOrganizerComponent implements OnInit {
     names: "",
     last_names: "",
     email: "",
+    title: "",
     password: "",
     status: true,
     phone: "",

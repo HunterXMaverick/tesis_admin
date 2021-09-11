@@ -8,9 +8,10 @@ import {PersonService} from '../../services/person.service';
 })
 export class SidebarComponent implements OnInit {
 
-  email: string
-  dataUser: any = []
+  email: string;
+  dataUser: any = [];
   profile_picture_url: string = '';
+  idUser: any;
 
   constructor(
     private personService: PersonService
@@ -26,8 +27,9 @@ export class SidebarComponent implements OnInit {
     return this.personService.getUserByEmail(this.email).subscribe(
       (res: any) => {
         this.dataUser = res.data;
-        console.log(this.dataUser._id);
-        this.personService.getUserById(this.dataUser._id).
+        this.idUser = this.dataUser._id!;
+        console.log(this.idUser);
+        this.personService.getUserById(this.dataUser._id!).
         subscribe((res: any)=>{
           if (res.data.profile_picture) {
             this.profile_picture_url = `http://localhost:3500/api/file/${res.data.profile_picture}`;

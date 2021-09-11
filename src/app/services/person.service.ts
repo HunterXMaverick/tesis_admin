@@ -46,4 +46,11 @@ export class PersonService {
   disableEnablePerson(id: string, person: object) {
     return this.http.put(`${this.url}/disablePerson/${id}`, person, this.server.obtainHeaders());
   }
+  putPersonNoPass(id: string, person: object) {
+    return this.http.put(
+      `${this.url}/putPersonNoPass/${id}`,
+      person,
+      this.server.obtainHeaders()
+    );
+  }
 }

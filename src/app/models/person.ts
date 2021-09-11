@@ -9,6 +9,7 @@ export interface Person {
   last_names: string,
   phone?: string,
   email?: string,
+  title: string
   password?: string,
   status?: boolean
 }

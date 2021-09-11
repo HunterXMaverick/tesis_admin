@@ -14,7 +14,6 @@ export class PutUserComponent {
   user: FormGroup;
   idUser: any;
   dataUser: any = [];
-  logUser: any = [];
   profile_picture_url: string = '';
 
   constructor(
@@ -29,7 +28,7 @@ export class PutUserComponent {
       last_names: ['', [Validators.required]],
       phone: ['', [Validators.required]],
       profile_picture: [null],
-      password: ['', [Validators.required]],
+      password: [''],
     });
     this.idUser = this.router.snapshot.params.id;
     this.getUserById();
@@ -40,35 +39,23 @@ export class PutUserComponent {
       .getUserById(this.idUser)
       .subscribe((res: any) => {
         this.dataUser = res.data;
-        this.logUser = res.data;
-console.log(this.dataUser);
-        if (this.dataUser.profile_picture) {
-          if (this.dataUser.profile_picture) {
-            this.profile_picture_url = `http://localhost:3500/api/file/${this.dataUser.profile_picture}`;
-          } else {
-            this.profile_picture_url =
-              'https://upload.wikimedia.org/wikipedia/commons/7/72/Default-welcomer.png';
-          }
 
-          this.user.setValue({
-            names: this.dataUser.names,
-            last_names: this.dataUser.last_names,
-            phone: this.dataUser.phone,
-            profile_picture: '',
-            password: '',
-          });
+        this.user.setValue({
+          names: this.dataUser.names,
+          last_names: this.dataUser.last_names,
+          phone: this.dataUser.phone,
+          profile_picture: '',
+          password: '',
+        });
+
+        if (this.dataUser.profile_picture) {
+          this.profile_picture_url = `http://localhost:3500/api/file/${this.dataUser.profile_picture}`;
         } else {
-          this.user.setValue({
-            names: this.dataUser.names,
-            last_names: this.dataUser.last_names,
-            phone: this.dataUser.phone,
-            profile_picture: '',
-            password: '',
-          });
+          this.profile_picture_url =
+            'https://upload.wikimedia.org/wikipedia/commons/7/72/Default-welcomer.png';
         }
       });
   }
-
 
   putUser() {
     if (this.user.valid) {
@@ -92,8 +79,9 @@ console.log(this.dataUser);
           }).then((result) => {
             if (result.isConfirmed) {
               let newPic = this.user.get('profile_picture')?.value;
+              let newPassword = this.user.get('password')?.value;
 
-              if (newPic != '') {
+              if (newPic != '' && newPassword != '') {
                 const formData: any = new FormData();
                 formData.append(
                   'file',
@@ -127,7 +115,7 @@ console.log(this.dataUser);
                     };
 
                     this.personService
-                      .putPerson(this.idUser, dataPerson)
+                      .putPerson(this.idUser._id, dataPerson)
                       .subscribe(
                         () => {
                           Swal.fire({
@@ -147,11 +135,16 @@ console.log(this.dataUser);
                   });
               } else {
                 let dataPerson = {
-                  person: this.user.value,
+                  person: {
+                    names: this.user.get('names')!.value,
+                    last_names: this.user.get('last_names')!.value,
+                    phone: this.user.get('phone')!.value,
+                    profile_picture: '',
+                  },
                 };
 
                 this.personService
-                  .putPerson(this.idUser, dataPerson)
+                  .putPersonNoPass(this.idUser._id, dataPerson)
                   .subscribe(
                     () => {
                       Swal.fire({

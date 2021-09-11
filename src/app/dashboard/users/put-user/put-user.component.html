@@ -6,11 +6,16 @@
       Editar perfil
     </h2>
 
-    <form [formGroup]="user" class="flex lg:flex-row md:flex-row flex-col text-gray-700 px-3">
+    <form
+      [formGroup]="user"
+      class="flex lg:flex-row md:flex-row flex-col text-gray-700 px-3"
+    >
       <div class="w-1/2 p-2">
         <div class="flex flex-col mt-4 px-4">
           <label class="font-thin text-xl mr-5"> Nombres: </label>
-          <input formControlName="names" class="
+          <input
+            formControlName="names"
+            class="
               focus:border-blue-500
               appearance-none
               border
@@ -21,12 +26,17 @@
               text-gray-700
               leading-tight
               focus:outline-none
-            " type="text" placeholder="Ej: Marco Antonio" />
+            "
+            type="text"
+            placeholder="Ej: Marco Antonio"
+          />
         </div>
 
         <div class="flex flex-col mt-4 px-4">
           <label class="font-thin text-xl mr-5"> Apellidos: </label>
-          <input formControlName="last_names" class="
+          <input
+            formControlName="last_names"
+            class="
               focus:border-blue-500
               appearance-none
               border
@@ -37,12 +47,20 @@
               text-gray-700
               leading-tight
               focus:outline-none
-            " type="text" placeholder="Ej: Jumbo Estrada" />
+            "
+            type="text"
+            placeholder="Ej: Jumbo Estrada"
+          />
         </div>
 
-        <div class="flex flex-col mt-4 px-4">
+        <div
+          *ngIf="idUser.rol !== 'Participante'"
+          class="flex flex-col mt-4 px-4"
+        >
           <label class="font-thin text-xl mr-5"> Teléfono: </label>
-          <input formControlName="phone" class="
+          <input
+            formControlName="phone"
+            class="
               focus:border-blue-500
               appearance-none
               border
@@ -53,12 +71,21 @@
               text-gray-700
               leading-tight
               focus:outline-none
-            " type="text" placeholder="Ej: 0999999999" maxlength="10" />
+            "
+            type="text"
+            placeholder="Ej: 0999999999"
+            maxlength="10"
+          />
         </div>
 
-        <div *ngIf="logUser.rol == 'Administrador'" class="flex flex-col mt-4 px-4">
+        <div
+          *ngIf="idUser.rol !== 'Participante'"
+          class="flex flex-col mt-4 px-4"
+        >
           <label class="font-thin text-xl mr-5"> Contraseña: </label>
-          <input formControlName="password" class="
+          <input
+            formControlName="password"
+            class="
               focus:border-blue-500
               appearance-none
               border
@@ -69,14 +96,21 @@
               text-gray-700
               leading-tight
               focus:outline-none
-            " type="password" placeholder="*********" />
+            "
+            type="password"
+            placeholder="*********"
+          />
         </div>
       </div>
 
-      <div *ngIf="logUser.rol == 'Administrador'" class="w-1/2 p-2">
-        <div class="flex flex-col mt-4 px-4">
+      <div class="w-1/2 p-2">
+        <div
+          *ngIf="idUser.rol == 'Organizador' || idUser.rol == 'Ponente'"
+          class="flex flex-col mt-4 px-4"
+        >
           <label class="font-thin text-xl mr-5"> Foto de Perfil: </label>
-          <input class="
+          <input
+            class="
               focus:border-blue-500
               appearance-none
               border
@@ -87,16 +121,24 @@
               text-gray-700
               leading-tight
               focus:outline-none
-            " type="file" (change)="handleFileInput($event)" />
+            "
+            type="file"
+            (change)="handleFileInput($event)"
+          />
         </div>
 
-        <div class="flex mt-4 w-full justify-center">
+        <div
+          *ngIf="idUser.rol !== 'Participante' && profile_picture_url !== ''"
+          class="flex mt-4 w-full justify-center"
+        >
           <img [src]="profile_picture_url" class="w-64" alt="Foto de Perfil" />
         </div>
 
         <div class="flex flex-col my-16">
           <div class="flex">
-            <button routerLink="../../congresses" class="
+            <button
+              routerLink="../../history"
+              class="
                 mx-auto
                 focus:outline-none
                 py-1
@@ -110,11 +152,14 @@
                 hover:bg-gray-100
                 font-medium
                 border
-              ">
+              "
+            >
               <i class="fas fa-undo mr-1"></i>
-              Cancelar
+              Regresar
             </button>
-            <button (click)="putUser()" class="
+            <button
+              (click)="putUser()"
+              class="
                 mx-auto
                 focus:outline-none
                 border border-transparent
@@ -128,7 +173,8 @@
                 bg-blue-500
                 hover:bg-blue-600
                 font-medium
-              ">
+              "
+            >
               <i class="fas fa-save mr-1"></i>
               Guardar
             </button>

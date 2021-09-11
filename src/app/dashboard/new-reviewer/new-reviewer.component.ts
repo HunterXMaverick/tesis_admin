@@ -22,6 +22,7 @@ export class NewReviewerComponent implements OnInit {
     specialty: '',
     phone: '',
     email: '',
+    title: '',
     password: '',
     status: true,
   }
