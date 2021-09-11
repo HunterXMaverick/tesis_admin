@@ -102,12 +102,12 @@
     </ul>
 
     <div class="mt-auto flex items-center text-blue-800 text-center">
-      <a routerLink="/dashboard/put-user/{{idUser}}" class="flex items-center"><i class="fa fa-user-edit"></i>
+      <a routerLink="../put-user/{{ dataUser._id }}" class="flex items-center"><i class="fa fa-user-edit"></i>
         <span class="ml-2 font-medium">Editar perfil</span></a>
     </div>
 
     <div *ngIf="dataUser.rol == 'Administrador'" class="mt-auto flex items-center text-red-700 text-center">
-      <a href="http://localhost:4200/home" class="flex items-center">
+      <a href="http://localhost:4201/home" class="flex items-center">
         <svg class="fill-current h-5 w-5" viewBox="0 0 24 24">
           <path d="M16 17v-3H9v-4h7V7l5 5-5 5M14 2a2 2 0 012
 						2v2h-2V4H5v16h9v-2h2v2a2 2 0 01-2 2H5a2 2 0 01-2-2V4a2 2

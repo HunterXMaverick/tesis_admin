@@ -11,7 +11,6 @@ export class SidebarComponent implements OnInit {
   email: string;
   dataUser: any = [];
   profile_picture_url: string = '';
-  idUser: any;
 
   constructor(
     private personService: PersonService
@@ -27,8 +26,7 @@ export class SidebarComponent implements OnInit {
     return this.personService.getUserByEmail(this.email).subscribe(
       (res: any) => {
         this.dataUser = res.data;
-        this.idUser = this.dataUser._id!;
-        console.log(this.idUser);
+        console.log(this.dataUser);
         this.personService.getUserById(this.dataUser._id!).
         subscribe((res: any)=>{
           if (res.data.profile_picture) {

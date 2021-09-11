@@ -31,6 +31,7 @@ export class PutUserComponent {
       password: [''],
     });
     this.idUser = this.router.snapshot.params.id;
+    console.log(this.idUser);
     this.getUserById();
   }
 
@@ -58,6 +59,11 @@ export class PutUserComponent {
   }
 
   putUser() {
+    if (this.idUser.rol == 'Administrador') {
+      this.user.setValue({
+        phone: '0999999999',
+      });
+    }
     if (this.user.valid) {
       let pathOnlyLetters = /^[ñA-ZñÑáéíóúÁÉÍÓÚa-z _]*$/;
       let pathPhone = /^0[0-9]{1}[0-9]{8}$/;
