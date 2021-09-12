@@ -59,11 +59,6 @@ export class PutUserComponent {
   }
 
   putUser() {
-    if (this.idUser.rol == 'Administrador') {
-      this.user.setValue({
-        phone: '0999999999',
-      });
-    }
     if (this.user.valid) {
       let pathOnlyLetters = /^[ñA-ZñÑáéíóúÁÉÍÓÚa-z _]*$/;
       let pathPhone = /^0[0-9]{1}[0-9]{8}$/;
@@ -121,7 +116,7 @@ export class PutUserComponent {
                     };
 
                     this.personService
-                      .putPerson(this.idUser._id, dataPerson)
+                      .putPerson(this.idUser, dataPerson)
                       .subscribe(
                         () => {
                           Swal.fire({
@@ -150,7 +145,7 @@ export class PutUserComponent {
                 };
 
                 this.personService
-                  .putPersonNoPass(this.idUser._id, dataPerson)
+                  .putPerson(this.idUser._id, dataPerson)
                   .subscribe(
                     () => {
                       Swal.fire({
